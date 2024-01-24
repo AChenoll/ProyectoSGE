@@ -56,7 +56,7 @@ export class UnidadesComponent implements OnInit {
     //this.onChanges();
   }
 
-  
+
   async getUnidades(entidad: Entidad) {
     const RESPONSE = await this.unidadesService.getUnidades(entidad.id_entidad).toPromise();
     this.permises = RESPONSE.permises;
@@ -69,7 +69,7 @@ export class UnidadesComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.filterPredicate = this.createFilter();
       this.onChanges();
-    }  
+    }
   }
 
   async addUnidad(idEntidad: number) {
@@ -79,7 +79,7 @@ export class UnidadesComponent implements OnInit {
       if (RESULT.ok) {
         this.ngOnInit();
       }
-    }  
+    }
   }
 
   async editUnidad(unidad: Unidad) {
@@ -89,7 +89,7 @@ export class UnidadesComponent implements OnInit {
       if (RESULT.ok) {
         this.ngOnInit();
       }
-    }  
+    }
   }
 
   async deleteUnidad(unidad: Unidad) {
@@ -101,7 +101,7 @@ export class UnidadesComponent implements OnInit {
       }
     }
   }
-  
+
 
   createFilter(): (unidad: Unidad, filter: string) => boolean {
     const filterFunction = (unidad: Unidad, filter: string): boolean => {
