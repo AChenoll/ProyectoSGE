@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommonService } from '../shared/common.service';
 import { ApiResponse } from '../shared/interfaces/api-response';
 import { URL_API } from 'src/environments/environment';
+import { Unidad } from '../shared/interfaces/unidad';
 
 const ENDPOINT='unidad_centro'
 
@@ -12,7 +13,8 @@ const ENDPOINT='unidad_centro'
 })
 export class UnidadesCentroService {
 
-  unidadCentro: UnidadCentro[];
+  unidadCentro:UnidadCentro;
+  unidadesCentro: UnidadCentro[];
 
   constructor(private http: HttpClient, private commonService: CommonService) { }
 
@@ -36,6 +38,18 @@ export class UnidadesCentroService {
 
   deleteUnidadCentro(id: number|string) {
     return this.http.delete<ApiResponse>(`${URL_API}/${ENDPOINT}.php?id=${id}`, {headers: this.commonService.headers });
+  }
+
+  setUnidadCentro(unidadCentro: UnidadCentro){
+    this.unidadCentro=unidadCentro;
+  }
+
+  setDatosBasicosUnidadCentro(formUnidadCentro: any){
+    this.unidadCentro.id_unidad_centro = formUnidadCentro.id_unidad_centro;
+    this.unidadCentro.unidad_centro = formUnidadCentro.unidad_centro;
+    this.unidadCentro.id_ciclo = formUnidadCentro.id_ciclo;
+    this.unidadCentro.ciclo = formUnidadCentro.ciclo;
+    this.unidadCentro.observaciones = formUnidadCentro.observaciones;
   }
 
 }

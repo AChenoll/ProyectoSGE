@@ -11,6 +11,7 @@ import { Permises } from '../shared/interfaces/api-response';
 import { AddUnidadCentroComponent } from './add-unidad-centro/add-unidad-centro.component';
 import { EditUnidadCentroComponent } from './edit-unidad-centro/edit-unidad-centro.component';
 import { DeleteUnidadCentroComponent } from './delete-unidad-centro/delete-unidad-centro.component';
+import { DatosUnidadCentroComponent } from './datos-unidad-centro/datos-unidad-centro.component';
 
 
 @Component({
@@ -51,9 +52,9 @@ export class UnidadesCentroComponent implements OnInit {
     this.permises=RESPONSE.permises;
 
     if (RESPONSE.ok) {
-      this.UnidadesCentroService.unidadCentro = RESPONSE.data as UnidadCentro[];
+      this.UnidadesCentroService.unidadesCentro = RESPONSE.data as UnidadCentro[];
       this.displayedColumns = ['id_unidad_centro', 'unidad_centro', 'id_ciclo', 'actions'];
-      this.dataSource.data = this.UnidadesCentroService.unidadCentro;
+      this.dataSource.data = this.UnidadesCentroService.unidadesCentro;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.dataSource.filterPredicate = this.createFilter();
@@ -101,6 +102,23 @@ export class UnidadesCentroComponent implements OnInit {
       if(RESULT.ok){
         this.ngOnInit();
       }
+    }
+  }
+
+  async datosUnidadCentro(unidadCentro: UnidadCentro) {
+    const UNIDAD_CENTRO = unidadCentro
+
+    if (UNIDAD_CENTRO){
+      const dialogRef = this.dialog.open(DatosUnidadCentroComponent, {
+        width: '90%',
+        maxWidth: '90%',
+        scrollStrategy: this.overlay.scrollStrategies.noop(),
+        disableClose: true,
+        data: UNIDAD_CENTRO
+      });
+
+      const RESULT = await dialogRef.afterClosed().toPromise();
+      await this.getUnidadesCentro();
     }
   }
 

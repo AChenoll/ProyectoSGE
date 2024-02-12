@@ -2,7 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CiclosService } from 'src/app/services/ciclos.service';
 import { UnidadesCentroService } from 'src/app/services/unidades-centro.service';
+import { Ciclo } from 'src/app/shared/interfaces/ciclo';
+import { Unidad } from 'src/app/shared/interfaces/unidad';
 import { UnidadCentro } from 'src/app/shared/interfaces/unidad-centro';
 import { CLOSE, INVALID_FORM } from 'src/app/shared/messages';
 import { validador } from 'src/app/shared/validators/validator';
@@ -14,11 +17,13 @@ import { validador } from 'src/app/shared/validators/validator';
 })
 export class EditUnidadCentroComponent implements OnInit {
   editUnidadCentro: FormGroup;
+  ciclos: Ciclo[];
 
   constructor(
     public dialogRef: MatDialogRef<EditUnidadCentroComponent>,
     private servicioEditUnidadCentro: UnidadesCentroService,
     public snackBar: MatSnackBar,
+    private ciclosService: CiclosService,
     @Inject(MAT_DIALOG_DATA) public unidadCentro: UnidadCentro
   ) { }
 
@@ -32,7 +37,7 @@ export class EditUnidadCentroComponent implements OnInit {
 
   }
 
-  async confirmAdd(){
+  async confirmEdit(){
     if(this.editUnidadCentro.valid){
       const unidadCentro=this.editUnidadCentro.value;
 
@@ -50,6 +55,14 @@ export class EditUnidadCentroComponent implements OnInit {
 
   onNoClick(): void{
     this.dialogRef.close({ok: false});
+  }
+
+  async getCiclos(){
+    const RESPONSE = await this.ciclosService.getAllCiclos().toPromise();
+
+    if(RESPONSE.ok){
+      this.ciclos=RESPONSE.data as Ciclo[];
+    }
   }
 
 }

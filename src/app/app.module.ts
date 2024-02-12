@@ -14,7 +14,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 import { DatosEntidadComponent } from './entidades/datos-entidad/datos-entidad.component'
 import { DatosReunionComponent } from './reuniones/datos-reunion/datos-reunion.component';
-import { MatTableModule } from '@angular/material/table';
 
 // import { NgxLoadingXModule, POSITION, SPINNER, NgxLoadingXConfig } from 'ngx-loading-x';
 
@@ -34,7 +33,7 @@ import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,8 +43,7 @@ import { MatTableModule } from '@angular/material/table';
     NavbarModule,
     FooterModule,
     MatDatepickerModule,
-    MatNativeDateModule,
-    MatTableModule
+    MatNativeDateModule
     // NgxLoadingXModule.forRoot(ngxLoadingXConfig)
   ],
   providers: [

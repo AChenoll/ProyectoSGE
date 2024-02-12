@@ -7,6 +7,8 @@ import { UnidadesCentroComponent } from './unidades-centro.component';
 import { AddUnidadCentroComponent } from './add-unidad-centro/add-unidad-centro.component';
 import { DeleteUnidadCentroComponent } from './delete-unidad-centro/delete-unidad-centro.component';
 import { EditUnidadCentroComponent } from './edit-unidad-centro/edit-unidad-centro.component';
+import { DatosUnidadCentroModule } from './datos-unidad-centro/datos-unidad-centro.module';
+
 
 
 @NgModule({
@@ -14,7 +16,13 @@ import { EditUnidadCentroComponent } from './edit-unidad-centro/edit-unidad-cent
   imports: [
     CommonModule,
     CrudMaterialModule,
-    UnidadesCentroRoutingModule
+    UnidadesCentroRoutingModule,
+    DatosUnidadCentroModule
+  ],
+  entryComponents:[
+    AddUnidadCentroComponent,
+    EditUnidadCentroComponent,
+    DeleteUnidadCentroComponent
   ]
 })
 export class UnidadesCentroModule { }

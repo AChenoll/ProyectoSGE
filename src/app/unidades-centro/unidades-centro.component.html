@@ -37,11 +37,17 @@
           </button>
         </th>
         <td mat-cell *matCellDef="let unidadCentro">
+          <button mat-icon-button (click)="datosUnidadCentro(unidadCentro)">
+            <mat-icon>
+                assignment
+            </mat-icon>
+          </button>
+        <!-- <td mat-cell *matCellDef="let unidadCentro">
           <button mat-icon-button (click)="editUnidadesCentro(unidadCentro)">
             <mat-icon>
               mode_edit
             </mat-icon>
-          </button>
+          </button> -->
           <button mat-icon-button (click)="deleteUnidadesCentro(unidadCentro)">
             <mat-icon>
               delete
